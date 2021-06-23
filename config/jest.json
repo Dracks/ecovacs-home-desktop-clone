@@ -1,0 +1,24 @@
+{
+    "moduleFileExtensions": [
+        "js",
+        "json",
+        "ts",
+        "tsx"
+    ],
+    "rootDir": "../src",
+    "testRegex": ".spec.tsx?$",
+    "transform": {
+        "^.+\\.tsx?$": "ts-jest",
+        ".+\\.(scss)$": "jest-transform-stub"
+    },
+    "moduleNameMapper": {
+        "^(.*)\\/icon": "<rootDir>../config/test/EuiIcon.js"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "jsdom",
+    "globals": {
+        "ts-jest": {
+          "tsConfig": "./config/tsconfig.json"
+        }
+    }
+}
