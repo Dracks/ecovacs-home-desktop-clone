@@ -1,14 +1,31 @@
-import { View } from '@nodegui/react-nodegui';
+import { EcovacsDevice } from 'ecovacs-deebot';
 import React from 'react';
+import { View } from '@nodegui/react-nodegui';
+import DevicesColumn from './devices-column';
 
-const ProtectedContent: React.FC = ()=>{
-    return <View style={viewStyle} />
+interface IMainHomeProps {
+    devices: EcovacsDevice[]
+}
+
+const MainHome : React.FC<IMainHomeProps> = ({devices})=>{
+    return <View style={viewStyle}>
+    <View>
+        <DevicesColumn devices={devices} />
+    </View>
+    <View style={flex}>
+
+    </View>
+</View>
 }
 
 const viewStyle = `
-  width:50px;
-  height:30px; 
-  background-color: yellow;
+    flex-direction: row;
 `;
 
-export default ProtectedContent;
+const flex=`
+    flex: 1;
+    flex-direction: column;
+    width: 100px;
+`
+
+export default MainHome
