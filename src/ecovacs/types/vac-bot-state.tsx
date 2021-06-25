@@ -1,0 +1,31 @@
+export interface VacBotState {
+    ChargeState: string
+    CleanSpeed: string
+    CleanReport: string
+    BatteryInfo: string
+    LifeSpan_filter: string
+    LifeSpan_main_brush: string
+    LifeSpan_side_brush: string
+    WaterLevel: string
+    WaterBoxInfo: string
+    DustCaseInfo: string
+    Error: string
+    DoNotDisturbEnabled: string
+    ContinuousCleaningEnabled: string
+    Volume: string
+    ChargePosition: string
+    DeebotPosition: string
+    LastUsedAreaValues: string
+    Maps: string
+    MapSpotAreas: string
+    MapSpotAreaInfo: string
+    MapVirtualBoundaries: string
+    MapVirtualBoundaryInfo: string
+    MapDataObject: string
+    MapImage: string
+    CurrentMapName: string
+    CurrentMapMID: string
+    CurrentMapIndex: string
+    DeebotPositionCurrentSpotAreaID: string
+    CleanLog: string
+}
