@@ -1,5 +1,5 @@
 {
-  "name": "clipboard-history",
+  "name": "ecovacs-desktop",
   "version": "1.0.0",
   "main": "dist/main/index.js",
   "license": "MIT",
@@ -15,13 +15,13 @@
     "package": ""
   },
   "dependencies": {
-    "@nodegui/react-nodegui": "^0.12.0",
+    "@nodegui/react-nodegui": "^0.14.0",
     "bufferutil": "^4.0.3",
-    "ecovacs-deebot": "^0.6.0",
+    "ecovacs-deebot": "^0.9.0",
     "env-paths": "^2.2.1",
     "node-machine-id": "^1.1.12",
-    "react": "^16.13.1",
-    "react-async-hook": "^3.6.2",
+    "react": "^16.14.0",
+    "react-async-hook": "^4.0.0",
     "utf-8-validate": "^5.0.5"
   },
   "devDependencies": {

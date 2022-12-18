@@ -10,14 +10,16 @@ interface IMainHomeProps {
 
 const MainHome : React.FC<IMainHomeProps> = ({devices})=>{
     const [ selectedDevice, setDevice ] = React.useState<EcovacsDevice | undefined>()
-    return <View style={viewStyle}>
+    /*return <View style={viewStyle}>
     <View>
         <DevicesColumn devices={devices} selectDevice={setDevice}/>
     </View>
     <View style={flex}>
         {selectedDevice && <ShowDevice device={selectedDevice} />}
     </View>
-</View>
+    </View>
+*/
+    return <Text>MainHome</Text>
 }
 
 const viewStyle = `

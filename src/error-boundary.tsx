@@ -1,5 +1,5 @@
 import { ErrorInfo } from "react";
-import { Text } from '@nodegui/react-nodegui';
+import { Text, View } from '@nodegui/react-nodegui';
 import React from 'react';
 
 interface ErrorState {
@@ -17,7 +17,8 @@ class ErrorBoundary extends React.Component<{},ErrorState> {
         if (!this.state?.error){
             return this.props.children
         }
-        return <Text> Error: {this.state.error.name} </Text>
+        // return <View><Text> Error: {this.state.error.name} </Text></View>
+        return <View />
     }
 }
 

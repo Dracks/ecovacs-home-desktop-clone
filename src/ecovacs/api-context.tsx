@@ -2,12 +2,12 @@ import React from 'react';
 import { EcoVacsAPI } from 'ecovacs-deebot';
 
 export interface IEcovacsContext {
-    api?: EcoVacsAPI,
+    api: EcoVacsAPI,
     countrycode?: string,
     continent?: string
 }
 
-export const EcovacsContext = React.createContext<IEcovacsContext>({})
+export const EcovacsContext = React.createContext<IEcovacsContext>({} as unknown as IEcovacsContext)
 
 const useEcovacs = ()=>React.useContext(EcovacsContext)
 

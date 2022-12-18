@@ -8,6 +8,8 @@ import useEcovacsProvider from './ecovacs/api-provider';
 import { Country } from './country';
 import ErrorBoundary from './error-boundary';
 import { EcoVacsAPI } from 'ecovacs-deebot';
+import { wait } from './utils/wait';
+import { EcovacsContext } from './ecovacs/api-context';
 
 
 const minSize = { width: 800, height: 600 };
@@ -21,7 +23,8 @@ export interface Credentials {
 }
 
 const Content: React.FC = () => {
-    const { EcoVacsProvider, ...ecoVacs } = useEcovacsProvider({
+    const [isInitialized, setIsInitialized] = React.useState(false)
+    const { extraData, ...ecoVacs } = useEcovacsProvider({
         onComplete: (country, user, password) => {
             settings.setValue('country', country)
             settings.setValue('user', user)
@@ -37,18 +40,22 @@ const Content: React.FC = () => {
 
     React.useEffect(() => {
         if (credentials.country && credentials.user && credentials.hash_password) {
-            ecoVacs.login(credentials.country, credentials.user, credentials.hash_password)
+                ecoVacs.login(credentials.country, credentials.user, credentials.hash_password).then(()=>setIsInitialized(true));
+        } else {
+            setIsInitialized(true)
         }
     }, [])
-    if (ecoVacs.isIdentified) {
-        return <EcoVacsProvider><ProtectedContent /></EcoVacsProvider>
-    }
-    if (ecoVacs.loading) {
-        return <View><Text>Loading...</Text></View>
+    console.log("EcoVacs", ecoVacs, isInitialized)
+    
+    if (ecoVacs.api && extraData) {
+        return <EcovacsContext.Provider value={{...extraData, api: ecoVacs.api}}><ProtectedContent /></EcovacsContext.Provider>
+    } else if (ecoVacs.loading || !isInitialized) {
+        return <Text>Loading</Text>
     }
     return <LoginScreen defaultUser={credentials.user} setCredentials={(country: Country, user: string, password: string) => {
         ecoVacs.login(country, user, EcoVacsAPI.md5(password))
-    }} />
+    }} />//*/
+    return <Text/>
 }
 
 export const App: React.FC = () => {

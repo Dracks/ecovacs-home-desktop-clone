@@ -1,8 +1,7 @@
 import React from 'react'
 import { Country } from '../country'
 import createApi from './api'
-import { EcovacsContext, IEcovacsContext } from './api-context'
-import { EcoVacsAPI } from 'ecovacs-deebot';
+import { IEcovacsContext } from './api-context'
 import { useAsyncCallback } from 'react-async-hook';
 
 
@@ -15,18 +14,22 @@ const useEcovacsProvider = (opts?:{
         const {api, continent} = createApi(country)
         const data = await api.connect(username, hashPassword)
         console.log("Data", data)
-        opts?.onComplete(country, username, hashPassword);
+        if (opts){
+            const onComplete = opts?.onComplete ?? (() => undefined);
+            onComplete(country, username, hashPassword)
+        }
         setExtraData({countrycode: country, continent})
         return api
     })
-    console.log(loginCb.result)
+    console.log("login output is:", loginCb.result)
 
     return {
         login: loginCb.execute,
         loading: loginCb.loading,
-        isIdentified: loginCb.result !== undefined,
+        api: loginCb.result,
         error: loginCb.error,
-        EcoVacsProvider: ({children})=><EcovacsContext.Provider value={{ ...extraData, api: loginCb.result}}>{children}</EcovacsContext.Provider>
+        extraData,
+        // EcoVacsProvider: ({children})=><EcovacsContext.Provider value={{ ...extraData, api: loginCb.result!}}>{children}</EcovacsContext.Provider>
     }
 }
 

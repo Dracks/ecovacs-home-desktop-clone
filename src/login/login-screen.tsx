@@ -11,6 +11,7 @@ interface LoginScreenProps {
 const LoginScreen: React.FC<LoginScreenProps> = ({defaultUser, setCredentials})=>{
     const [ user, setUser ] = React.useState<string>(defaultUser || "")
     const [ password, setPassword ] = React.useState<string>("")
+    
     return (
         <View id='login-screen' style={rootViewStyle} >
             <View style={flex}/>
@@ -23,8 +24,9 @@ const LoginScreen: React.FC<LoginScreenProps> = ({defaultUser, setCredentials})=
                 <View style={flex} />
             </View>
             <View style={flex} />
-        </View>
+            </View>
     )
+    
 }
 
 const columnStyle = `
